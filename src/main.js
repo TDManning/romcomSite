@@ -34,14 +34,18 @@ var currentCover;
 // Add your event listeners here 👇
 
 // Variable.addEventListener("what does it do", The Function (Written Below))
-randomCoverButton.addEventListener(".random-cover-button", showRandomCover)
+randomCoverButton.addEventListener("click", showRandomCover)
 
 
 // Create your event handlers and other functions here 👇
 
-function showRandomCover(coverImg, title, descriptor1, descriptor2) {
-
+function showRandomCover() {
+  coverImage.src = covers[getRandomIndex(covers)],
+  coverTitle.innerText = titles[getRandomIndex(titles)],
+  tagline1.innerText = descriptors[getRandomIndex(descriptors)],
+  tagline2.innerText = descriptors[getRandomIndex(descriptors)]
 }
+console.log(showRandomCover)
 
 
 // We've provided two functions to get you started
