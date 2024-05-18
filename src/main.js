@@ -1,17 +1,4 @@
-// //Iteration 0- 
-// // -When the page loads, we should see a cover with a randomly selected image, 
-// //    title and tagline which includes two random descriptors (coverImg, title, descriptor1, descriptor2).
-// // - Every time the user clicks the Show New Random Cover button, the random cover is displayed.
-
-// // -Hint: you may need to update the value of the provided currentCover variable. 
-
-// // -Hint: you may need to create a function that displays information on the DOM.
-
-// // Psuedocode: WHAT DO THEY WANT & WHATS THE PLAN: 
-
-
-// // Create variables targetting the relevant DOM elements here 👇
-
+// Create variables targetting the relevant DOM elements here 👇
 
 var coverImage = document.querySelector(".cover-image");
 var coverTitle = document.querySelector(".cover-title");
@@ -23,15 +10,13 @@ var randomCoverButton = document.querySelector(".random-cover-button");
 var saveCoverButton = document.querySelector(".save-cover-button");
 var makeYourOwnButton = document.querySelector(".make-new-button");
 var savedCoversSection = document.querySelector(".saved-covers-section");
-var descriptor1 = document.querySelector(".user-desc1");
-var descriptor2 = document.querySelector(".user-desc2");
-var createNewBookButton = document.querySelector(".create-new-book-button");
+var descriptor1 = document.querySelector(".tagline-1");
+var descriptor2 = document.querySelector(".tagline-2");
+var makeMyBookButton = document.querySelector(".create-new-book-button");
 var formView = document.querySelector(".form-view");
 var priceTag = document.querySelector(".price-tag");
 var homeView = document.querySelector(".home-view");
 var viewSavedButton = document.querySelector(".view-saved-button");
-
-
 
 // We've provided a few variables below
 
@@ -49,7 +34,7 @@ randomCoverButton.addEventListener("click", showRandomCover);
 makeYourOwnButton.addEventListener("click", showFormView);
 viewSavedButton.addEventListener("click", showSavedCoverView);
 homeButton.addEventListener("click", showHomePage);
-
+makeMyBookButton.addEventListener("click", createUserBook)
 
 
 // Create your event handlers and other functions here :point_down:
@@ -102,10 +87,30 @@ function showHomePage() {
   saveCoverButton.classList.remove("hidden");
 };
 
+//Iteration 2 variables below to target the DOM elements for user creates 
+var userCover = document.querySelector('#cover')
+var userTitle = document.querySelector('#title')
+var userDescription1 = document.querySelector('#descriptor1')
+var userDescription2 = document.querySelector('#descriptor2')
 
 
+//Iteration 2 Function to push a book to the user Make Your Own Cover form
+function createUserBook (event) {
 
+  event.preventDefault()
 
+  coverImage.src = userCover.value
+  coverTitle.innerText = userTitle.value
+  tagline1.innerText = userDescription1.value
+  tagline2.innerText = userDescription2.value
+  
+  showHomePage()
 
+  covers.push(userCover.value);
+  titles.push(userTitle.value);
+  descriptors.push(userDescription1.value);
+  descriptors.push(userDescription2.value);
+
+}
 
 
