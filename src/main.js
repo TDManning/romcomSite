@@ -1,3 +1,4 @@
++// Second push up-- Switch to Main
 // Create variables targetting the relevant DOM elements here 👇
 
 var coverImage = document.querySelector(".cover-image");
