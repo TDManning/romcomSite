@@ -62,14 +62,6 @@ function showRandomCover() {
 };
 
 
-
-// We've provided two functions to get you started
-
-
-
-
-
-
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length)
 };
@@ -110,22 +102,6 @@ function showHomePage() {
   saveCoverButton.classList.remove("hidden");
 };
 
-
-
-
-
-
-
-
-// // When a user clicks the “View Saved Covers” button, we should see the saved covers section, and the homepage view should be hidden X
-// When the Saved Covers view is visible, the “Show New Random Cover” and “Save Cover” buttons should be hidden X
-// When the Saved Covers view is visible, the “Home” button should be visible X
-// For both the Make New Cover form section and the Saved Covers section:
-
-// In summary: Be able to switch between the three views (main poster, form, and saved posters) on the correct button clicks
-// When a user clicks the “Home” button, we should only see the Home section
-// When a user clicks the “Home” button, the home button should be hidden
-// When a user clicks the “Home” button, the “Show New Random Cover” and “Save Cover” buttons should be visible again
 
 
 
