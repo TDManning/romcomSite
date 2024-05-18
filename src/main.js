@@ -28,7 +28,8 @@ var descriptor2 = document.querySelector(".user-desc2");
 var createNewBookButton = document.querySelector(".create-new-book-button");
 var formView = document.querySelector(".form-view");
 var priceTag = document.querySelector(".price-tag");
-var homeView = document.querySelector(".home-view")
+var homeView = document.querySelector(".home-view");
+var viewSavedButton = document.querySelector(".view-saved-button");
 
 
 
@@ -43,12 +44,12 @@ var currentCover;
 // Add your event listeners here :point_down:
 // Variable.addEventListener("what does it do", The Function (Written Below))
 
+addEventListener("load", showRandomCover);
 randomCoverButton.addEventListener("click", showRandomCover);
 makeYourOwnButton.addEventListener("click", showFormView);
-randomCoverButton.addEventListener("click", x);
-saveCoverButton.addEventListener("click", x);
-homeButtonHidden.addEventListener("click", x);
-hiddenForm.addEventListener("click", x);
+viewSavedButton.addEventListener("click", showSavedCoverView);
+homeButton.addEventListener("click", showHomePage);
+
 
 
 // Create your event handlers and other functions here :point_down:
@@ -63,6 +64,10 @@ function showRandomCover() {
 
 
 // We've provided two functions to get you started
+
+
+
+
 
 
 function getRandomIndex(array) {
@@ -88,11 +93,39 @@ function showFormView() {
   saveCoverButton.classList.add("hidden");
 };
 
-// When a user clicks the “Make Your Own Cover” button, we should see the form, and the homepage view should be hidden
-// When the Form view is visible, the “Show New Random Cover” and “Save Cover” buttons should be hidden
-// When the Form view is visible, the “Home” button should be visible
 
-// need to hide 
+function showSavedCoverView() {
+  homeView.classList.add("hidden");
+  saveCoverButton.classList.add("hidden");
+  randomCoverButton.classList.add("hidden");
+  savedCoversSection.classList.remove("hidden");
+  homeButton.classList.remove("hidden");
+};
+
+function showHomePage() {
+  homeView.classList.remove("hidden");
+  homeButton.classList.add("hidden");
+  formView.classList.add("hidden");
+  randomCoverButton.classList.remove("hidden");
+  saveCoverButton.classList.remove("hidden");
+};
+
+
+
+
+
+
+
+
+// // When a user clicks the “View Saved Covers” button, we should see the saved covers section, and the homepage view should be hidden X
+// When the Saved Covers view is visible, the “Show New Random Cover” and “Save Cover” buttons should be hidden X
+// When the Saved Covers view is visible, the “Home” button should be visible X
+// For both the Make New Cover form section and the Saved Covers section:
+
+// In summary: Be able to switch between the three views (main poster, form, and saved posters) on the correct button clicks
+// When a user clicks the “Home” button, we should only see the Home section
+// When a user clicks the “Home” button, the home button should be hidden
+// When a user clicks the “Home” button, the “Show New Random Cover” and “Save Cover” buttons should be visible again
 
 
 
