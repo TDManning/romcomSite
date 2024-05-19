@@ -1,9 +1,9 @@
-+// Second push up-- Switch to Main
+// Second push up-- Switch to Main
 // Create variables targetting the relevant DOM elements here 👇
 
 var coverImage = document.querySelector(".cover-image");
 var coverTitle = document.querySelector(".cover-title");
-var taglineMain = document.querySelector(".tagline")
+var taglineMain = document.querySelector(".tagline");
 var tagline1 = document.querySelector(".tagline-1");
 var tagline2 = document.querySelector(".tagline-2");
 var homeButton = document.querySelector(".home-button");
@@ -35,8 +35,8 @@ randomCoverButton.addEventListener("click", showRandomCover);
 makeYourOwnButton.addEventListener("click", showFormView);
 viewSavedButton.addEventListener("click", showSavedCoverView);
 homeButton.addEventListener("click", showHomePage);
-makeMyBookButton.addEventListener("click", createUserBook)
-
+makeMyBookButton.addEventListener("click", createUserBook);
+saveCoverButton.addEventListener("click", saveGeneratedCover);
 
 // Create your event handlers and other functions here :point_down:
 
@@ -95,23 +95,62 @@ var userDescription1 = document.querySelector('#descriptor1')
 var userDescription2 = document.querySelector('#descriptor2')
 
 
-//Iteration 2 Function to push a book to the user Make Your Own Cover form
 function createUserBook (event) {
-
   event.preventDefault()
 
   coverImage.src = userCover.value
   coverTitle.innerText = userTitle.value
   tagline1.innerText = userDescription1.value
   tagline2.innerText = userDescription2.value
-  
+  var userInputCover = createCover(userCover.value, userTitle.value, userDescription1.value, userDescription2.value)
+  savedCovers.push(userInputCover);
+  console.log(savedCovers);
   showHomePage()
-
-  covers.push(userCover.value);
-  titles.push(userTitle.value);
-  descriptors.push(userDescription1.value);
-  descriptors.push(userDescription2.value);
-
 }
+
+
+function saveGeneratedCover() {
+  var generatedCover = createCover(coverImage.src, coverTitle.innerText, tagline1.innerText, tagline2.innerText) 
+  savedCovers.push(generatedCover)
+  console.log(savedCovers)
+  };
+
+  
+
+
+//  function showSavedCovers() { 
+// savedCoversSection.innerHTML = "";
+// var newInnerHTML = ""
+
+// for (var i = 0; i < savedCovers.length; i ++) {
+//   newInnerHTML += makeHTMLForCover(savedCovers[i]);
+// }
+
+// savedCoversSection.innerHTML = newInnerHTML;
+//  }
+
+ 
+ 
+//  function makeHTMLForCovers(cover) {
+//   var HTMLTagline1 = `<span class="tagline-1">${cover.tagline1}</span`;
+//   var HTMLTagline2 = `<span class="tagline-2">${cover.tagline2}</span`;
+//   var tagline = `<h3 class="tagline">A tale of ${tagline1} and ${tagline2} </h3>`;
+//   var title = `h2 class="cover-title">${title}</h2>`;
+  
+// }
+
+
+ 
+
+
+//  <section class="main-cover">
+//         <img class="cover-image" src="./assets/prairie.jpg">
+//         <h2 class="cover-title">Windswept Hearts</h2>
+//         <h3 class="tagline">A tale of <span class="tagline-1">passion</span> and <span class="tagline-2">woe</span></h3>
+//         <img class="price-tag" src="./assets/price.png">
+//         <img class="overlay" src="./assets/overlay.png"></img>
+
+
+
 
 
