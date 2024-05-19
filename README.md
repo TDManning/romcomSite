@@ -24,6 +24,8 @@ ______________________________________________________
 ### Abstract:
 [//]: <> (Briefly describe what you built and its features. What problem is the app solving? How does this application solve that problem?)
 
+The application that Terra and Robert built is a random romance novel cover generator, it is also dynamic enough to take in user input images and their corresponding title/descriptors in order to generate a book cover of their own.
+
 ### Installation Instructions:
 [//]: <> (What steps does a person have to take to get your app cloned down and running?)
 

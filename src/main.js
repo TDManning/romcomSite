@@ -1,5 +1,4 @@
-// Second push up-- Switch to Main
-// Create variables targetting the relevant DOM elements here 👇
+
 
 var coverImage = document.querySelector(".cover-image");
 var coverTitle = document.querySelector(".cover-title");
@@ -18,17 +17,13 @@ var formView = document.querySelector(".form-view");
 var priceTag = document.querySelector(".price-tag");
 var homeView = document.querySelector(".home-view");
 var viewSavedButton = document.querySelector(".view-saved-button");
+var savedView = document.querySelector(".saved-view")
 
-// We've provided a few variables below
 
-var savedCovers = [
-  createCover("http://3.bp.blogspot.com/-iE4p9grvfpQ/VSfZT0vH2UI/AAAAAAAANq8/wwQZssi-V5g/s1600/Do%2BNot%2BForsake%2BMe%2B-%2BImage.jpg", "Sunsets and Sorrows", "sunsets", "sorrows")
-];
-
+var savedCovers = [];
 var currentCover;
 
-// Add your event listeners here :point_down:
-// Variable.addEventListener("what does it do", The Function (Written Below))
+
 
 addEventListener("load", showRandomCover);
 randomCoverButton.addEventListener("click", showRandomCover);
@@ -38,18 +33,19 @@ homeButton.addEventListener("click", showHomePage);
 makeMyBookButton.addEventListener("click", createUserBook);
 saveCoverButton.addEventListener("click", saveGeneratedCover);
 
-// Create your event handlers and other functions here :point_down:
+
 
 function showRandomCover() {
-  coverImage.src = covers[getRandomIndex(covers)],
-  coverTitle.innerText = titles[getRandomIndex(titles)],
-  tagline1.innerText = descriptors[getRandomIndex(descriptors)],
-  tagline2.innerText = descriptors[getRandomIndex(descriptors)]
+  coverImage.src = covers[getRandomIndex(covers)];
+  coverTitle.innerText = titles[getRandomIndex(titles)];
+  tagline1.innerText = descriptors[getRandomIndex(descriptors)];
+  tagline2.innerText = descriptors[getRandomIndex(descriptors)];
+  saveMainCoverToCurrentCover();
 };
 
 
 function getRandomIndex(array) {
-  return Math.floor(Math.random() * array.length)
+  return Math.floor(Math.random() * array.length);
 };
 
 function createCover(imgSrc, title, descriptor1, descriptor2) {
@@ -59,14 +55,15 @@ function createCover(imgSrc, title, descriptor1, descriptor2) {
     title: title,
     tagline1: descriptor1,
     tagline2: descriptor2
-  }
-  return cover
+  };
+  return cover;
 };
 
 function showFormView() {
   homeView.classList.add("hidden");
   homeButton.classList.remove("hidden");
   formView.classList.remove("hidden");
+  savedView.classList.add("hidden");
   randomCoverButton.classList.add("hidden");
   saveCoverButton.classList.add("hidden");
 };
@@ -77,89 +74,93 @@ function showSavedCoverView() {
   saveCoverButton.classList.add("hidden");
   randomCoverButton.classList.add("hidden");
   savedCoversSection.classList.remove("hidden");
+  savedView.classList.remove("hidden");
   homeButton.classList.remove("hidden");
   showSavedCovers();
 };
 
 function showHomePage() {
+  savedView.classList.add("hidden");
   homeView.classList.remove("hidden");
   homeButton.classList.add("hidden");
   formView.classList.add("hidden");
   randomCoverButton.classList.remove("hidden");
+  saveMainCoverToCurrentCover()
   saveCoverButton.classList.remove("hidden");
 };
 
-//Iteration 2 variables below to target the DOM elements for user creates 
-var userCover = document.querySelector('#cover')
-var userTitle = document.querySelector('#title')
-var userDescription1 = document.querySelector('#descriptor1')
-var userDescription2 = document.querySelector('#descriptor2')
+
+var userCover = document.querySelector('#cover');
+var userTitle = document.querySelector('#title');
+var userDescription1 = document.querySelector('#descriptor1');
+var userDescription2 = document.querySelector('#descriptor2');
 
 
-function createUserBook (event) {
+function createUserBook(event) {
   event.preventDefault()
 
-  coverImage.src = userCover.value
-  coverTitle.innerText = userTitle.value
-  tagline1.innerText = userDescription1.value
-  tagline2.innerText = userDescription2.value
-  var userInputCover = createCover(userCover.value, userTitle.value, userDescription1.value, userDescription2.value)
-  savedCovers.push(userInputCover);
-  console.log(savedCovers);
-  showHomePage()
-}
+  coverImage.src = userCover.value;
+  coverTitle.innerText = userTitle.value;
+  tagline1.innerText = userDescription1.value;
+  tagline2.innerText = userDescription2.value;
+  saveMainCoverToCurrentCover();
+  showHomePage();
+};
 
 
 function saveGeneratedCover() {
-  var generatedCover = createCover(coverImage.src, coverTitle.innerText, tagline1.innerText, tagline2.innerText) 
-  savedCovers.push(generatedCover)
-  console.log(savedCovers)
-  };
-
-  
-
-  function showSavedCovers() {
-    savedCoversSection.innerHTML = '';
-    var newInnerHTML = '';
-    for (var i= 0; i< savedCovers.length; i++) {
-      newInnerHTML += makeHTMLFromCover(savedCovers[i]);
-    }
-    savedCoversSection.innerHTML = newInnerHTML;
-    var miniCoverElements = document.querySelectorAll(".mini-cover")
-    console.log(miniCoverElements)
+  if (!savedCovers.includes(currentCover)) {
+    savedCovers.push(currentCover);
   }
-  // write a for loop that goes through each element
-  // add event listeners to each mini cover element
-  // assign a dblckick event listeners to the mini covers
-  // THE NEXT FUNCTION: Grab the id (below) and its going to look similar to the remove book from the library function. 
-  // will need a code snippit that is event.currentTarget.id 
-  // after cover is deleted invoke the savecover function one more time
-  
-  //must trigger the function to work. 
-  
-  function makeHTMLFromCover(cover) {
-    var coverTagline1 =`<span class="tagline-1">${cover.tagline1}</span>`;
-    var coverTagline2 = `<span class="tagline-2">${cover.tagline2}</span>`;
-    var tagline = `<h3 class="tagline">A tale of ${coverTagline1} and ${coverTagline2}</h3>`
-    var title = `<h2 class="cover-title">${cover.title}</h2>`
-    var coverImage = `<img class="cover-image" src="${cover.coverImg}">`
-    var overlay = `<img class="overlay" src="./assets/overlay.png">`
-     var coverHTML = `<section class="mini-cover" id=${cover.id}>${coverImage}${title}${overlay}</section>`
-     return coverHTML; 
-  }
+};
 
-  
-  // add event listeners to each mini cover
-  // assign an event listers to each element in mini cover array
-  // assign a dbl click eventlisteners to teh mini covers
-  // write a function
-  
-  {/* <section class="main-cover">
-          <img class="cover-image" src="./assets/prairie.jpg">
-          <h2 class="cover-title">Windswept Hearts</h2>
-          <h3 class="tagline">A tale of <span class="tagline-1">passion</span> and <span class="tagline-2">woe</span></h3>
-          <img class="price-tag" src="./assets/price.png">
-          <img class="overlay" src="./assets/overlay.png">
-        </section> */}
+
+
+function showSavedCovers() {
+  savedCoversSection.innerHTML = '';
+  var newInnerHTML = '';
+  for (var i = 0; i < savedCovers.length; i++) {
+    newInnerHTML += makeHTMLFromCover(savedCovers[i]);
+  }
+  savedCoversSection.innerHTML = newInnerHTML;
+
+  var miniCoverElements = document.querySelectorAll(".mini-cover");
+};
+
+
+function deleteSavedCover(event) {
+  event.preventDefault();
+};
+
+
+
+function makeHTMLFromCover(cover) {
+  var coverTagline1 = `<span class="tagline-1">${cover.tagline1}</span>`;
+  var coverTagline2 = `<span class="tagline-2">${cover.tagline2}</span>`;
+  var tagline = `<h3 class="tagline">A tale of ${coverTagline1} and ${coverTagline2}</h3>`;
+  var title = `<h2 class="cover-title">${cover.title}</h2>`;
+  var coverImage = `<img class="cover-image" src="${cover.coverImg}">`;
+  var overlay = `<img class="overlay" src="./assets/overlay.png">`;
+  var coverHTML = `<section class="mini-cover" id=${cover.id}>${coverImage}${title}${tagline}${overlay}</section>`;
+
+  return coverHTML;
+};
+
+
+
+function saveMainCoverToCurrentCover() {
+  var mainCover = createCover(coverImage.src, coverTitle.innerText, descriptor1.innerText, descriptor2.innerText);
+  currentCover = mainCover;
+
+};
+
+
+
+
+
+
+
+
+
 
 
