@@ -78,6 +78,7 @@ function showSavedCoverView() {
   randomCoverButton.classList.add("hidden");
   savedCoversSection.classList.remove("hidden");
   homeButton.classList.remove("hidden");
+  showSavedCovers();
 };
 
 function showHomePage() {
@@ -117,40 +118,48 @@ function saveGeneratedCover() {
 
   
 
-
-//  function showSavedCovers() { 
-// savedCoversSection.innerHTML = "";
-// var newInnerHTML = ""
-
-// for (var i = 0; i < savedCovers.length; i ++) {
-//   newInnerHTML += makeHTMLForCover(savedCovers[i]);
-// }
-
-// savedCoversSection.innerHTML = newInnerHTML;
-//  }
-
- 
- 
-//  function makeHTMLForCovers(cover) {
-//   var HTMLTagline1 = `<span class="tagline-1">${cover.tagline1}</span`;
-//   var HTMLTagline2 = `<span class="tagline-2">${cover.tagline2}</span`;
-//   var tagline = `<h3 class="tagline">A tale of ${tagline1} and ${tagline2} </h3>`;
-//   var title = `h2 class="cover-title">${title}</h2>`;
+  function showSavedCovers() {
+    savedCoversSection.innerHTML = '';
+    var newInnerHTML = '';
+    for (var i= 0; i< savedCovers.length; i++) {
+      newInnerHTML += makeHTMLFromCover(savedCovers[i]);
+    }
+    savedCoversSection.innerHTML = newInnerHTML;
+    var miniCoverElements = document.querySelectorAll(".mini-cover")
+    console.log(miniCoverElements)
+  }
+  // write a for loop that goes through each element
+  // add event listeners to each mini cover element
+  // assign a dblckick event listeners to the mini covers
+  // THE NEXT FUNCTION: Grab the id (below) and its going to look similar to the remove book from the library function. 
+  // will need a code snippit that is event.currentTarget.id 
+  // after cover is deleted invoke the savecover function one more time
   
-// }
+  //must trigger the function to work. 
+  
+  function makeHTMLFromCover(cover) {
+    var coverTagline1 =`<span class="tagline-1">${cover.tagline1}</span>`;
+    var coverTagline2 = `<span class="tagline-2">${cover.tagline2}</span>`;
+    var tagline = `<h3 class="tagline">A tale of ${coverTagline1} and ${coverTagline2}</h3>`
+    var title = `<h2 class="cover-title">${cover.title}</h2>`
+    var coverImage = `<img class="cover-image" src="${cover.coverImg}">`
+    var overlay = `<img class="overlay" src="./assets/overlay.png">`
+     var coverHTML = `<section class="mini-cover" id=${cover.id}>${coverImage}${title}${overlay}</section>`
+     return coverHTML; 
+  }
 
-
- 
-
-
-//  <section class="main-cover">
-//         <img class="cover-image" src="./assets/prairie.jpg">
-//         <h2 class="cover-title">Windswept Hearts</h2>
-//         <h3 class="tagline">A tale of <span class="tagline-1">passion</span> and <span class="tagline-2">woe</span></h3>
-//         <img class="price-tag" src="./assets/price.png">
-//         <img class="overlay" src="./assets/overlay.png"></img>
-
-
-
+  
+  // add event listeners to each mini cover
+  // assign an event listers to each element in mini cover array
+  // assign a dbl click eventlisteners to teh mini covers
+  // write a function
+  
+  {/* <section class="main-cover">
+          <img class="cover-image" src="./assets/prairie.jpg">
+          <h2 class="cover-title">Windswept Hearts</h2>
+          <h3 class="tagline">A tale of <span class="tagline-1">passion</span> and <span class="tagline-2">woe</span></h3>
+          <img class="price-tag" src="./assets/price.png">
+          <img class="overlay" src="./assets/overlay.png">
+        </section> */}
 
 
