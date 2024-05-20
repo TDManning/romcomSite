@@ -1,5 +1,4 @@
 
-
 var coverImage = document.querySelector(".cover-image");
 var coverTitle = document.querySelector(".cover-title");
 var taglineMain = document.querySelector(".tagline");
@@ -17,13 +16,10 @@ var formView = document.querySelector(".form-view");
 var priceTag = document.querySelector(".price-tag");
 var homeView = document.querySelector(".home-view");
 var viewSavedButton = document.querySelector(".view-saved-button");
-var savedView = document.querySelector(".saved-view")
-
+var savedView = document.querySelector(".saved-view");
 
 var savedCovers = [];
 var currentCover;
-
-
 
 addEventListener("load", showRandomCover);
 randomCoverButton.addEventListener("click", showRandomCover);
@@ -33,8 +29,6 @@ homeButton.addEventListener("click", showHomePage);
 makeMyBookButton.addEventListener("click", createUserBook);
 saveCoverButton.addEventListener("click", saveGeneratedCover);
 
-
-
 function showRandomCover() {
   coverImage.src = covers[getRandomIndex(covers)];
   coverTitle.innerText = titles[getRandomIndex(titles)];
@@ -42,7 +36,6 @@ function showRandomCover() {
   tagline2.innerText = descriptors[getRandomIndex(descriptors)];
   saveMainCoverToCurrentCover();
 };
-
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -54,7 +47,7 @@ function createCover(imgSrc, title, descriptor1, descriptor2) {
     coverImg: imgSrc,
     title: title,
     tagline1: descriptor1,
-    tagline2: descriptor2
+    tagline2: descriptor2,
   };
   return cover;
 };
@@ -67,7 +60,6 @@ function showFormView() {
   randomCoverButton.classList.add("hidden");
   saveCoverButton.classList.add("hidden");
 };
-
 
 function showSavedCoverView() {
   homeView.classList.add("hidden");
@@ -89,12 +81,10 @@ function showHomePage() {
   saveCoverButton.classList.remove("hidden");
 };
 
-
 var userCover = document.querySelector('#cover');
 var userTitle = document.querySelector('#title');
 var userDescription1 = document.querySelector('#descriptor1');
 var userDescription2 = document.querySelector('#descriptor2');
-
 
 function createUserBook(event) {
   event.preventDefault()
@@ -107,14 +97,11 @@ function createUserBook(event) {
   showHomePage();
 };
 
-
 function saveGeneratedCover() {
   if (!savedCovers.includes(currentCover)) {
     savedCovers.push(currentCover);
   }
 };
-
-
 
 function showSavedCovers() {
   savedCoversSection.innerHTML = '';
@@ -123,16 +110,22 @@ function showSavedCovers() {
     newInnerHTML += makeHTMLFromCover(savedCovers[i]);
   }
   savedCoversSection.innerHTML = newInnerHTML;
-
   var miniCoverElements = document.querySelectorAll(".mini-cover");
+  for (var i = 0; i < miniCoverElements.length; i++) {
+    miniCoverElements[i].addEventListener("dblclick", deleteSavedCover);
+  }
 };
-
 
 function deleteSavedCover(event) {
-  event.preventDefault();
+  event.preventDefault()
+  var idToDelete = event.currentTarget.id;
+  for (var i = 0; i < savedCovers.length; i++) {
+    if (idToDelete === savedCovers[i].id.toString()) {
+      savedCovers.splice(i, 1);
+    }
+  }
+  showSavedCovers();
 };
-
-
 
 function makeHTMLFromCover(cover) {
   var coverTagline1 = `<span class="tagline-1">${cover.tagline1}</span>`;
@@ -146,12 +139,9 @@ function makeHTMLFromCover(cover) {
   return coverHTML;
 };
 
-
-
 function saveMainCoverToCurrentCover() {
   var mainCover = createCover(coverImage.src, coverTitle.innerText, descriptor1.innerText, descriptor2.innerText);
   currentCover = mainCover;
-
 };
 
 
